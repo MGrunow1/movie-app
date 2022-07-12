@@ -38,3 +38,12 @@
   font-size: x-large;
   font-weight: bold;
 }
+
+.SearchBar {
+  margin-top: 22px;
+  margin-bottom: 25px;
+}
+
+.SearchInput {
+  width: calc(min(90vw, 400px));
+}

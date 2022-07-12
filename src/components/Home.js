@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Loading from "./Loading";
 import MovieCard from "./MovieCard";
+import SearchBar from "./SearchBar";
 
 const API_KEY = process.env.REACT_APP_MOVIE_API_KEY;
 
@@ -106,6 +107,7 @@ export default function Home() {
   return (
     <div className="Home">
       <h1>Movie Information</h1>
+      <SearchBar name={name} setSearch={setName} />
       <div>
         {isLoading ? (
             <Loading />
