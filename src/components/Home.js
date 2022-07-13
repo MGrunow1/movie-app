@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Loading from "./Loading";
 import MovieCard from "./MovieCard";
+import Paginator from "./Paginator";
 import SearchBar from "./SearchBar";
 
 const API_KEY = process.env.REACT_APP_MOVIE_API_KEY;
@@ -10,6 +11,7 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false);  
   const [movieList, setMovieList] = useState([]);
   const [page, setPage] = useState(1);
+  const [maxPages, setMaxPages] = useState(1);
 
   useEffect(() => {
     async function getMoviesByName() {
@@ -17,8 +19,7 @@ export default function Home() {
         const url=`http://www.omdbapi.com/?i=${API_KEY}&s=${name}&page=${page}`;
         const response = await fetch(url);
         const data = await response.json();
-        console.log("data is: ", data);
-        console.log(data.totalResults, data.Search)
+        setMaxPages(Math.ceil(data.totalResults/10));
         setMovieList(data.Search);
     }
     getMoviesByName();
@@ -114,7 +115,7 @@ export default function Home() {
         ) : (
           <div>
             <div style={{display: "flex", justifyContent: "center", flexWrap: "wrap"}}>
-              {movieList.length > 0 ? (
+              {movieList ? (
                 movieList.map((movie) => (
                   <div>
                     <MovieCard movieData={movie} />
@@ -124,7 +125,7 @@ export default function Home() {
                 <div>No movies found.</div>
               )}
             </div>
-            <div>Page {page} of {}</div>
+            {movieList && (<Paginator page={page} maxPages={maxPages} setPage={setPage} />)}
           </div>
         )}
       </div>
