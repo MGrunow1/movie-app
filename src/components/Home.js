@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import Loading from "./Loading";
-import MovieCard from "./MovieCard";
-import Paginator from "./Paginator";
 import SearchBar from "./SearchBar";
+import ShowMovieCardList from "./ShowMovieCardList";
 
 const API_KEY = process.env.REACT_APP_MOVIE_API_KEY;
 
@@ -20,13 +19,14 @@ export default function Home() {
         const response = await fetch(url);
         const data = await response.json();
         setMaxPages(Math.ceil(data.totalResults/10));
+        console.log(data);
         setMovieList(data.Search);
     }
     getMoviesByName();
     setIsLoading(false);
 }, [name, page]);
 
-
+let pagedata={page, setPage, maxPages};
  
 
   /*
@@ -114,18 +114,7 @@ export default function Home() {
             <Loading />
         ) : (
           <div>
-            <div style={{display: "flex", justifyContent: "center", flexWrap: "wrap"}}>
-              {movieList ? (
-                movieList.map((movie) => (
-                  <div>
-                    <MovieCard movieData={movie} />
-                  </div>
-                ))
-              ) : (
-                <div>No movies found.</div>
-              )}
-            </div>
-            {movieList && (<Paginator page={page} maxPages={maxPages} setPage={setPage} />)}
+            <ShowMovieCardList movieList={movieList} pagedata={pagedata} />
           </div>
         )}
       </div>
