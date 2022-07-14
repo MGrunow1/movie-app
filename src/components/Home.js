@@ -22,15 +22,15 @@ export default function Home() {
   useEffect(() => {
     async function getMoviesByName() {
       setIsLoading(true);
-        const url=`http://www.omdbapi.com/?i=${API_KEY}&s=${name}&page=${page}`;
-        const response = await fetch(url);
-        const data = await response.json();
-        setMaxPages(Math.ceil(data.totalResults/10));
-        console.log(data);
-        setMovieList(data.Search);
+      const url=`http://www.omdbapi.com/?i=${API_KEY}&s=${name}&page=${page}`;
+      const response = await fetch(url);
+      const data = await response.json();
+      setMaxPages(Math.ceil(data.totalResults/10));
+      console.log(data);
+      setMovieList(data.Search);
+      setIsLoading(false);
     }
     getMoviesByName();
-    setIsLoading(false);
 }, [name, page]);
 
 let pagedata={page, setPage, maxPages};
