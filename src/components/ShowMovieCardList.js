@@ -13,7 +13,6 @@ display:block;
 `;
 
 export default function ShowMovieCardList(props) {
-  const { page, setPage, maxPages } = props.pagedata;
   return (
     <div>
       <CardFrame>
@@ -29,7 +28,7 @@ export default function ShowMovieCardList(props) {
       </CardFrame>
       <PaginatorBlock>
         {props.movieList && (
-          <Paginator page={page} maxPages={maxPages} setPage={setPage} />
+          <Paginator pagedata={props.pagedata} />
         )}
       </PaginatorBlock>
     </div>

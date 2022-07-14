@@ -17,16 +17,18 @@ margin-bottom: 7px;
 `;
 
 export default function Paginator(props) {
-    const lastPage = props.maxPages;
+    // destructure props into variables
+    const { page, setPage, maxPages } = props.pagedata;
+    
     function prevPage() {
-        let currentPage = props.page;
+        let currentPage = page;
         currentPage = (currentPage > 1) ? currentPage - 1 : 1;
-        props.setPage(currentPage);
+        setPage(currentPage);
     }
     function nextPage() {
-        let currentPage = props.page;
-        currentPage = (currentPage < lastPage) ? currentPage + 1 : lastPage;
-        props.setPage(currentPage);
+        let currentPage = page;
+        currentPage = (currentPage < maxPages) ? currentPage + 1 : maxPages;
+        setPage(currentPage);
     }
 
     return(
@@ -34,7 +36,7 @@ export default function Paginator(props) {
             <PaginatorButton onClick={prevPage}>
                 &lt;
             </PaginatorButton>
-            <div>Page {props.page} of {lastPage}</div>
+            <div>Page {page} of {maxPages}</div>
             <PaginatorButton onClick={nextPage}>
                 &gt;
             </PaginatorButton>
