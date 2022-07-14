@@ -17,8 +17,8 @@ export default function ShowMovieCardList(props) {
     <div>
       <CardFrame>
         {props.movieList ? (
-          props.movieList.map((movie) => (
-            <div>
+          props.movieList.map((movie, index) => (
+            <div key={index}>
               <MovieCard movieData={movie} />
             </div>
           ))
