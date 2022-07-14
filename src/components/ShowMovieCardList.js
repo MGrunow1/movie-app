@@ -1,13 +1,22 @@
+import styled from "styled-components";
 import MovieCard from "./MovieCard";
 import Paginator from "./Paginator";
+
+const CardFrame=styled.div`
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+`;
+
+const PaginatorBlock=styled.div`
+display:block;
+`;
 
 export default function ShowMovieCardList(props) {
   const { page, setPage, maxPages } = props.pagedata;
   return (
     <div>
-      <div
-        style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}
-      >
+      <CardFrame>
         {props.movieList ? (
           props.movieList.map((movie) => (
             <div>
@@ -17,12 +26,12 @@ export default function ShowMovieCardList(props) {
         ) : (
           <div>No movies found.</div>
         )}
-      </div>
-      <div style={{ display: "block" }}>
+      </CardFrame>
+      <PaginatorBlock>
         {props.movieList && (
           <Paginator page={page} maxPages={maxPages} setPage={setPage} />
         )}
-      </div>
+      </PaginatorBlock>
     </div>
   );
 }

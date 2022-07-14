@@ -1,9 +1,16 @@
 import { useState, useEffect } from "react";
+import styled from "styled-components";
 import Loading from "./Loading";
 import SearchBar from "./SearchBar";
 import ShowMovieCardList from "./ShowMovieCardList";
 
 const API_KEY = process.env.REACT_APP_MOVIE_API_KEY;
+
+const HomePage=styled.div`
+background-color: aliceblue;
+min-height: 100vh;
+font-size: calc(10px + 2vmin);
+`;
 
 export default function Home() {
   const [name, setName] = useState("Avengers");
@@ -106,7 +113,7 @@ let pagedata={page, setPage, maxPages};
   
 
   return (
-    <div className="Home">
+    <HomePage>
       <h1>Movie Information</h1>
       <SearchBar name={name} setSearch={setName} />
       <div>
@@ -118,6 +125,6 @@ let pagedata={page, setPage, maxPages};
           </div>
         )}
       </div>
-    </div>
+    </HomePage>
   );
 }

@@ -1,23 +1,33 @@
+import styled from "styled-components";
 import { useState } from "react";
+
+const SearchBarContainer=styled.div`
+margin-top: 22px;
+margin-bottom: 25px;
+`;
+
+const SearchInput=styled.input`
+width: calc(min(90vw, 400px));
+`;
+
 export default function SearchBar(props) {
   const [keyword, setKeyword] = useState(props.name);
   function submit() {
     props.setSearch(keyword)
   }
   return (
-    <div className="SearchBar">
+    <SearchBarContainer>
       <label
        htmlFor="searchFor"
        style={{display: "block"}}
        >Movie name to search</label>
-      <input
-        className="SearchInput"
+      <SearchInput
         name="searchFor"
         type="text"
         value={keyword}
         onChange={(event) => setKeyword(event.target.value)}
       />
       <button onClick={submit}>Search</button>
-    </div>
+    </SearchBarContainer>
   );
 }

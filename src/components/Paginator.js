@@ -1,9 +1,26 @@
-//
+import styled from "styled-components";
+
+const PaginatorButton=styled.button`
+background-color: #282c34;
+color: aliceblue;
+margin-left: 3px;
+margin-right: 3px;
+padding: 1px;
+font-size: calc(10px + 2vmin);
+`;
+
+const PaginatorSection=styled.div`
+display: flex;
+justify-content: center;
+margin-top: 4px;
+margin-bottom: 7px;
+`;
+
 export default function Paginator(props) {
     const lastPage = props.maxPages;
     function prevPage() {
         let currentPage = props.page;
-        currentPage = (currentPage > 1) ? currentPage-1 : 1;
+        currentPage = (currentPage > 1) ? currentPage - 1 : 1;
         props.setPage(currentPage);
     }
     function nextPage() {
@@ -13,16 +30,14 @@ export default function Paginator(props) {
     }
 
     return(
-        <div className="Paginator">
-            <button
-             className="PaginatorButton"
-             onClick={prevPage}>
-                &lt;</button>
+        <PaginatorSection>
+            <PaginatorButton onClick={prevPage}>
+                &lt;
+            </PaginatorButton>
             <div>Page {props.page} of {lastPage}</div>
-            <button
-             className="PaginatorButton"
-             onClick={nextPage}>
-                &gt;</button>
-        </div>
+            <PaginatorButton onClick={nextPage}>
+                &gt;
+            </PaginatorButton>
+        </PaginatorSection>
     )
 }
