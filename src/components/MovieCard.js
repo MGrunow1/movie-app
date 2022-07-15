@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Card=styled.div`
+const Card=styled.button`
 width: 300px;
 border: 1px solid black;
 border-radius: 10px;
@@ -16,10 +16,11 @@ font-weight: bold;
 `;
 
 export default function MovieCard(props) {
-    //props.movieData.imdbID
-    //const url=`http://www.omdbapi.com/?i=${API_KEY}&i=${props.movieData.imdbID}`;
+    function submit() {
+        props.chooseMovie(props.movieData.imdbID);
+    }
     return (
-        <Card>
+        <Card onClick={submit}>
             <MovieTitle>{props.movieData.Title}</MovieTitle>
             <div>{props.movieData.Year}</div>
             <img src={props.movieData.Poster} alt=""></img>
