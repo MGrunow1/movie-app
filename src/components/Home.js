@@ -22,7 +22,7 @@ export default function Home() {
   useEffect(() => {
     async function getMoviesByName() {
       setIsLoading(true);
-      const url=`http://www.omdbapi.com/?i=${API_KEY}&s=${name}&page=${page}`;
+      const url=`http://www.omdbapi.com/?${API_KEY}&s=${name}&page=${page}`;
       const response = await fetch(url);
       const data = await response.json();
       setMaxPages(Math.ceil(data.totalResults/10));
