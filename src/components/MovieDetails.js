@@ -128,17 +128,35 @@ export default function MovieDetails(props) {
                         <InfoBlock onClick={dontCloseModal}>
                             <PosterImage src={movieInfo.Poster} alt="" />
                             <MainInfo>
-                                <MovieTitle>{movieInfo.Title}</MovieTitle>
+                                <MovieTitle>
+                                    {movieInfo.Title}
+                                </MovieTitle>
                                 <RatingAndTime>
-                                    <GrayBox>{movieInfo.Rated}</GrayBox>
-                                    <GrayBox>{movieInfo.Runtime}</GrayBox>
+                                    <GrayBox>
+                                        {movieInfo.Rated}
+                                    </GrayBox>
+                                    <GrayBox>
+                                        {movieInfo.Runtime}
+                                    </GrayBox>
                                 </RatingAndTime>
-                                <GrayBox>{movieInfo.Genre}</GrayBox>
-                                <BoldWord>Plot:</BoldWord>
-                                <TextBlock>{movieInfo.Plot}</TextBlock>
-                                <BoldWord>Actors:</BoldWord>
-                                <TextBlock>{movieInfo.Actors}</TextBlock>
-                                <MainCloseButton onClick={closeModal}>Close</MainCloseButton>
+                                <GrayBox>
+                                    {movieInfo.Genre}
+                                </GrayBox>
+                                <BoldWord>
+                                    Plot:
+                                </BoldWord>
+                                <TextBlock>
+                                    {movieInfo.Plot}
+                                </TextBlock>
+                                <BoldWord>
+                                    Actors:
+                                </BoldWord>
+                                <TextBlock>
+                                    {movieInfo.Actors}
+                                </TextBlock>
+                                <MainCloseButton onClick={closeModal}>
+                                    Close
+                                </MainCloseButton>
                             </MainInfo>
                         </InfoBlock>
                     </div>
