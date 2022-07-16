@@ -100,6 +100,9 @@ export default function MovieDetails(props) {
     function closeModal () {
         props.setter(null);
     }
+    function dontCloseModal(event) {
+        event.stopPropagation();
+    }
     useEffect(() => {
         async function getMovieDetails() {
           setIsLoading(true);
@@ -120,9 +123,9 @@ export default function MovieDetails(props) {
                 ) : (
                     <div>
                         <SmallCloseBlock>
-                            <SmallCloseButton>x</SmallCloseButton>
+                            <SmallCloseButton onClick={closeModal}>x</SmallCloseButton>
                         </SmallCloseBlock>
-                        <InfoBlock>
+                        <InfoBlock onClick={dontCloseModal}>
                             <PosterImage src={movieInfo.Poster} alt="" />
                             <MainInfo>
                                 <MovieTitle>{movieInfo.Title}</MovieTitle>
