@@ -97,12 +97,19 @@ margin-bottom: 10px;
 export default function MovieDetails(props) {
     const [isLoading, setIsLoading] = useState(false);
     const [movieInfo, setMovieInfo] = useState({})
+
+    // close modal
     function closeModal () {
         props.setter(null);
     }
+
+    // ignore clicks that are on the modal foreground
+    // allows user to select text, etc.
     function dontCloseModal(event) {
         event.stopPropagation();
     }
+
+    // fetch data about one movie
     useEffect(() => {
         async function getMovieDetails() {
           setIsLoading(true);

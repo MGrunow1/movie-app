@@ -20,11 +20,14 @@ export default function Paginator(props) {
     // destructure props into variables
     const { page, setPage, maxPages } = props.pagedata;
     
+    // subtract 1 unless page number is already 1
     function prevPage() {
         let currentPage = page;
         currentPage = (currentPage > 1) ? currentPage - 1 : 1;
         setPage(currentPage);
     }
+
+    // add 1 unless page is already at the last page
     function nextPage() {
         let currentPage = page;
         currentPage = (currentPage < maxPages) ? currentPage + 1 : maxPages;

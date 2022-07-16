@@ -16,9 +16,12 @@ font-weight: bold;
 `;
 
 export default function MovieCard(props) {
+
+    // select the current movie by its IMBD number
     function submit() {
         props.chooseMovie(props.movieData.imdbID);
     }
+
     return (
         <Card onClick={submit}>
             <MovieTitle>{props.movieData.Title}</MovieTitle>

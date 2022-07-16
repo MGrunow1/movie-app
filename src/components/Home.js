@@ -19,6 +19,7 @@ export default function Home() {
   const [page, setPage] = useState(1);
   const [maxPages, setMaxPages] = useState(1);
 
+  // fetch list of matching movies
   useEffect(() => {
     async function getMoviesByName() {
       setIsLoading(true);
@@ -32,6 +33,7 @@ export default function Home() {
     getMoviesByName();
 }, [name, page]);
 
+// object with information for Paginator
 let pagedata={page, setPage, maxPages};
  
   return (
