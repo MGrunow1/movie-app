@@ -12,8 +12,8 @@ min-height: 100vh;
 font-size: calc(10px + 2vmin);
 `;
 
-export default function Home() {
-  const [name, setName] = useState("Avengers");
+export default function Home(props) {
+  const [name, setName] = useState(props.name);
   const [isLoading, setIsLoading] = useState(false);  
   const [movieList, setMovieList] = useState([]);
   const [page, setPage] = useState(1);

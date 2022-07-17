@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import SearchBar from "./SearchBar";
 
@@ -19,10 +20,18 @@ align-self: center;
 `;
 
 export default function IntroductoryScreen(props) {
+    const [firstSearch, setFirstSearch] = useState(props.name);
+    
+    // update global search value when SearchBar gets a result
+    // (App.js will unmount this component and mount Home)
+    useEffect(() => {
+        props.setSearch(firstSearch);
+    }, [firstSearch]);
+
     return (
         <IntroductoryPage>
             <h1>Movie Information</h1>
-            <SearchBar name={props.name} setSearch={props.setName} />
+            <SearchBar name={firstSearch} setSearch={setFirstSearch} />
             <InstructionText>
                 Once a list of movies is found, you can click on any movie card to view more details about it.
             </InstructionText>
