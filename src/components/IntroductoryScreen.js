@@ -21,12 +21,13 @@ align-self: center;
 
 export default function IntroductoryScreen(props) {
     const [firstSearch, setFirstSearch] = useState(props.name);
+    const setSearch = props.setSearch;
     
     // update global search value when SearchBar gets a result
     // (App.js will unmount this component and mount Home)
     useEffect(() => {
-        props.setSearch(firstSearch);
-    }, [firstSearch]);
+        setSearch(firstSearch);
+    }, [firstSearch, setSearch]);
 
     return (
         <IntroductoryPage>
