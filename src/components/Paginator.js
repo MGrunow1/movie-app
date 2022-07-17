@@ -36,13 +36,19 @@ export default function Paginator(props) {
 
     return(
         <PaginatorSection>
+            {// only show "previous" button if there is a page before
+            (page > 1) &&
             <PaginatorButton onClick={prevPage}>
                 &lt;
             </PaginatorButton>
+            }
             <div>Page {page} of {maxPages}</div>
+            {// only show "next" button if there is page after
+            (page < maxPages) &&
             <PaginatorButton onClick={nextPage}>
                 &gt;
             </PaginatorButton>
+            }
         </PaginatorSection>
     )
 }
