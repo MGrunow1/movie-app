@@ -57,6 +57,8 @@ align-items: center;
 
 const Modal = styled.div`
 background-color: white;
+max-height: 95vh;
+overflow-y: auto;
 `;
 
 const MovieTitle = styled.div`
