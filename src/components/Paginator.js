@@ -1,11 +1,17 @@
 import styled from "styled-components";
+import prev from "../page_prev_min.svg";
+import next from "../page_next_min.svg";
+
+const ButtonImage=styled.img`
+height: 27px;
+`;
 
 const PaginatorButton=styled.button`
-background-color: #282c34;
-color: aliceblue;
-margin-left: 3px;
-margin-right: 3px;
-padding: 1px;
+background-color: aliceblue;
+border: 0px none aliceblue;
+margin-left: 1px;
+margin-right: 1px;
+padding-top: 5px;
 font-size: calc(10px + 2vmin);
 `;
 
@@ -39,14 +45,14 @@ export default function Paginator(props) {
             {// only show "previous" button if there is a page before
             (page > 1) &&
             <PaginatorButton onClick={prevPage}>
-                &lt;
+                <ButtonImage src={prev} alt="previous page" />
             </PaginatorButton>
             }
             <div>Page {page} of {maxPages}</div>
             {// only show "next" button if there is page after
             (page < maxPages) &&
             <PaginatorButton onClick={nextPage}>
-                &gt;
+                <ButtonImage src={next} alt="next page" />
             </PaginatorButton>
             }
         </PaginatorSection>
