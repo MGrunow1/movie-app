@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { ThemeContext } from "../contexts/ThemeContext";
 import styled from "styled-components";
 import Loading from "./Loading";
 
@@ -11,7 +12,12 @@ font-weight: bold;
 `;
 
 const GrayBox = styled.div`
-background-color: silver;
+${(props) => props.dark
+    ? `color: white;
+      background-color: gray;`
+    : `color: black;
+      background-color: silver;`
+  }
 width: fit-content;
 margin: 5px;
 padding: 3px 9px 3px 9px;
@@ -36,7 +42,13 @@ padding: 1px 9px 1px 9px;
 const MainCloseButton = styled.div`
 margin-top: 15px;
 padding: 4px 9px 4px 9px;
-border: 2px solid black;
+${(props) => props.dark
+  ? `border: 2px solid white;
+    color: white;`
+  : `border: 2px solid black;
+    color: black;
+    `
+}
 border-radius: 10px;
 box-shadow: 1px 1px 2px black;
 font-size: large;
@@ -49,14 +61,21 @@ top: 0;
 left: 0;
 width: 100%;
 height: 100%;
-background-color: rgba(0, 0, 0, .5);
+${(props) => props.dark
+  ? `background-color: rgba(127, 127, 127, .5);`
+  : `background-color: rgba(0, 0, 0, .5);`
+}
+
 display: flex;
 justify-content: center;
 align-items: center;
 `;
 
 const Modal = styled.div`
-background-color: white;
+${(props) => props.dark
+  ? `background-color: black;`
+  : `background-color: white;`
+}
 max-height: 95vh;
 overflow-y: auto;
 `;
@@ -99,6 +118,7 @@ margin-bottom: 10px;
 export default function MovieDetails(props) {
     const [isLoading, setIsLoading] = useState(false);
     const [movieInfo, setMovieInfo] = useState({})
+    const { theme } = useContext(ThemeContext);
 
     // close modal
     function closeModal () {
@@ -125,8 +145,8 @@ export default function MovieDetails(props) {
     }, [props.movie]);
 
     return (
-        <ModalBackground onClick={closeModal}>
-            <Modal>                
+        <ModalBackground onClick={closeModal} dark={theme === 'dark'}>
+            <Modal dark={theme === 'dark'}>                
                 {isLoading ? (
                     <Loading />
                 ) : (
@@ -141,14 +161,14 @@ export default function MovieDetails(props) {
                                     {movieInfo.Title}
                                 </MovieTitle>
                                 <RatingAndTime>
-                                    <GrayBox>
+                                    <GrayBox dark={theme === 'dark'}>
                                         {movieInfo.Rated}
                                     </GrayBox>
-                                    <GrayBox>
+                                    <GrayBox dark={theme === 'dark'}>
                                         {movieInfo.Runtime}
                                     </GrayBox>
                                 </RatingAndTime>
-                                <GrayBox>
+                                <GrayBox dark={theme === 'dark'}>
                                     {movieInfo.Genre}
                                 </GrayBox>
                                 <BoldWord>
@@ -163,7 +183,7 @@ export default function MovieDetails(props) {
                                 <TextBlock>
                                     {movieInfo.Actors}
                                 </TextBlock>
-                                <MainCloseButton onClick={closeModal}>
+                                <MainCloseButton onClick={closeModal} dark={theme === 'dark'}>
                                     Close
                                 </MainCloseButton>
                             </MainInfo>

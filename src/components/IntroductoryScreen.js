@@ -1,9 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { ThemeContext } from "../contexts/ThemeContext";
 import styled from "styled-components";
 import SearchBar from "./SearchBar";
 
 const IntroductoryPage=styled.div`
-background-color: aliceblue;
+${(props) => props.dark
+  ? `color: white;
+    background-color: darkblue;`
+  : `color: black;
+    background-color: aliceblue;`
+}
 min-height: 100vh;
 font-size: calc(10px + 2vmin);
 display: flex;
@@ -22,6 +28,7 @@ align-self: center;
 export default function IntroductoryScreen(props) {
     const [firstSearch, setFirstSearch] = useState(props.name);
     const setSearch = props.setSearch;
+    const { theme } = useContext(ThemeContext);
     
     // update global search value when SearchBar gets a result
     // (App.js will unmount this component and mount Home)
@@ -30,8 +37,8 @@ export default function IntroductoryScreen(props) {
     }, [firstSearch, setSearch]);
 
     return (
-        <IntroductoryPage>
-            <h1>Movie Information</h1>
+        <IntroductoryPage dark={theme === 'dark'}>
+            <h1 style={{marginTop: 0}}>Movie Information</h1>
             <SearchBar name={firstSearch} setSearch={setFirstSearch} />
             <InstructionText>
                 Once a list of movies is found, you can click on any movie card to view more details about it.
