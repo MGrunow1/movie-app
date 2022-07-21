@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { ThemeContext } from "../contexts/ThemeContext";
 import styled from "styled-components";
 import Loading from "./Loading";
 import SearchBar from "./SearchBar";
@@ -7,7 +8,12 @@ import ShowMovieCardList from "./ShowMovieCardList";
 const API_KEY = process.env.REACT_APP_MOVIE_API_KEY;
 
 const HomePage=styled.div`
-background-color: aliceblue;
+${(props) => props.dark
+  ? `color: white;
+    background-color: darkblue;`
+  : `color: black;
+    background-color: aliceblue;`
+}
 min-height: 100vh;
 font-size: calc(10px + 2vmin);
 `;
@@ -18,6 +24,7 @@ export default function Home(props) {
   const [movieList, setMovieList] = useState([]);
   const [page, setPage] = useState(1);
   const [maxPages, setMaxPages] = useState(1);
+  const { theme } = useContext(ThemeContext);
 
   // fetch list of matching movies
   useEffect(() => {
@@ -37,7 +44,7 @@ export default function Home(props) {
 let pagedata={page, setPage, maxPages};
  
   return (
-    <HomePage>
+    <HomePage dark={theme === 'dark'}>
       <h1>Movie Information</h1>
       <SearchBar name={name} setSearch={setName} />
       <div>
