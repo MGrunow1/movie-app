@@ -38,7 +38,7 @@ export default function IntroductoryScreen(props) {
 
     return (
         <IntroductoryPage dark={theme === 'dark'}>
-            <h1>Movie Information</h1>
+            <h1 style={{marginTop: 0}}>Movie Information</h1>
             <SearchBar name={firstSearch} setSearch={setFirstSearch} />
             <InstructionText>
                 Once a list of movies is found, you can click on any movie card to view more details about it.

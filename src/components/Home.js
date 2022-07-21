@@ -45,7 +45,7 @@ let pagedata={page, setPage, maxPages};
  
   return (
     <HomePage dark={theme === 'dark'}>
-      <h1>Movie Information</h1>
+      <h1 style={{marginTop: 0}}>Movie Information</h1>
       <SearchBar name={name} setSearch={setName} />
       <div>
         {isLoading ? (
