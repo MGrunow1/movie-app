@@ -15,7 +15,9 @@ export default function SearchBar(props) {
 
   // use the current keyword as the search term
   function submit() {
-    props.setSearch(keyword)
+    if(keyword) {
+      props.setSearch(keyword);
+    }
   }
 
   return (
